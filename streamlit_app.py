@@ -255,6 +255,15 @@ def status_block() -> None:
     done = [r for r in runs if r.get("status") == "completed"]
     st.session_state["robot_busy"] = bool(active)
 
+    # Робот начал или закончил работу → перерисовать всю страницу
+    # (карточки поставщиков и доступность кнопки «Обновить сейчас»).
+    snapshot = (bool(active), (done[0].get("id") or done[0].get("created_at")) if done else None)
+    previous = st.session_state.get("runs_snapshot")
+    st.session_state["runs_snapshot"] = snapshot
+    if previous is not None and previous != snapshot:
+        load_state.clear()
+        st.rerun()
+
     if active:
         color, text = "var(--accent)", "🔄 Робот работает прямо сейчас…"
     elif done:
