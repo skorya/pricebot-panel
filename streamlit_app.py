@@ -24,7 +24,7 @@ import streamlit as st
 KYIV = ZoneInfo("Europe/Kyiv")
 WORKFLOW = "pricebot.yml"
 BRANCH = "main"
-WINDOW_TEXT = "7:30 — 14:30 каждые 30 мин"
+WINDOW_TEXT = "7:30 — 14:25 · по новому прайсу на почте, проверка каждые 15 мин"
 
 st.set_page_config(page_title="PriceBot", page_icon="✦", layout="centered",
                    initial_sidebar_state="collapsed")
